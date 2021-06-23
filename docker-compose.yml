@@ -1,0 +1,24 @@
+version: '3'
+services:
+  api:
+    build: backend
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: password
+    depends_on:
+      - db
+  db:
+    build: postgres
+    environment:
+      POSTGRES_PASSWORD: password
+  web:
+    build: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/log:/var/log/nginx
+    volumes_from:
+      - api
+    depends_on:
+      - api

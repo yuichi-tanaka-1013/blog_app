@@ -23,6 +23,11 @@ RUN bundle install && \
 
 COPY . ./
 
+# Expose volumes to frontend
+VOLUME /backend/public
+VOLUME /backend/tmp
+
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "puma"]
+# CMD ["rails", "server", "-b", "0.0.0.0"]

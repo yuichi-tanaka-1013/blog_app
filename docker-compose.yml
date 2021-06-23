@@ -15,7 +15,7 @@ services:
   web:
     build: nginx
     ports:
-      - 80:80
+      - 3000:80
     volumes:
       - ./nginx/log:/var/log/nginx
     volumes_from:

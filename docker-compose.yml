@@ -12,6 +12,10 @@ services:
     build: postgres
     environment:
       POSTGRES_PASSWORD: password
+    volumes:
+      - type: volume
+        source: postgres-data
+        target: /var/lib/postgresql/data
   web:
     build: nginx
     ports:
@@ -22,3 +26,10 @@ services:
       - api
     depends_on:
       - api
+  view:
+    build: frontend
+    ports:
+      - 8080:8080
+
+volumes:
+  postgres-data:

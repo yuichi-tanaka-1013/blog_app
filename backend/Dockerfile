@@ -23,7 +23,7 @@ RUN bundle install && \
 
 COPY . ./
 
-# Expose volumes to frontend
+# Expose volumes to Webserver
 VOLUME /backend/public
 VOLUME /backend/tmp
 

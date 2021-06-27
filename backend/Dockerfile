@@ -4,15 +4,15 @@ WORKDIR /backend
 
 RUN apk update && \
   apk upgrade --no-cache && \
-  apk add --no-cache \
+  apk add --update --no-cache \
   build-base \
   libxml2-dev \
   libxslt-dev \
   postgresql \
   postgresql-dev \
   imagemagick \
-  ffmpeg
-RUN apk add --update --no-cache less
+  ffmpeg \
+  less
 
 RUN gem install bundler:2.2.14
 

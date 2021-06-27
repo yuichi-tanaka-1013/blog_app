@@ -6,6 +6,16 @@ services:
       DATABASE_HOST: db
       DATABASE_USER: postgres
       DATABASE_PASSWORD: password
+    volumes:
+      - type: volume
+        source: api-public-data
+        target: /backend/public
+      - type: volume
+        source: api-tmp-data
+        target: /backend/tmp
+      - type: volume
+        source: api-log-data
+        target: /backend/log
     depends_on:
       - db
   db:
@@ -22,14 +32,23 @@ services:
       - 3000:80
     volumes:
       - ./nginx/log:/var/log/nginx
-    volumes_from:
-      - api
+      - api-public-data:/backend/public
+      - api-tmp-data:/backend/tmp
     depends_on:
       - api
   view:
     build: frontend
     ports:
       - 8080:8080
+    # volumes:
+    #   - type: volume
+    #     source: view-log-data
+    #     target: /frontend/log
+
 
 volumes:
   postgres-data:
+  api-public-data:
+  api-tmp-data:
+  api-log-data:
+  # view-log-data:

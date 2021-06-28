@@ -27,6 +27,7 @@ services:
     build: postgres
     environment:
       POSTGRES_PASSWORD: password
+      DATABASE_HOST: db
     volumes:
       - type: volume
         source: postgres-data

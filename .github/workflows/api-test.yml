@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      postgres:
+      db:
         image: postgres:12.5
         # options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         # env:
@@ -20,7 +20,7 @@ jobs:
       image: ruby:2.6.5
       env:
         RAILS_ENV: test
-        DATABASE_HOST: postgres
+        DATABASE_HOST: db
 
     steps:
     - uses: actions/checkout@v2

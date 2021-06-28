@@ -18,7 +18,6 @@ jobs:
         env:
           DATABASE_HOST: postgres
           POSTGRES_PASSWORD: password
-          # POSTGRES_HOST_AUTH_METHOD: 'trust'
     container:
       image: ruby:2.6.5
       env:

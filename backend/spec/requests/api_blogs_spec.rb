@@ -15,7 +15,7 @@ RSpec.describe 'Blogs', type: :request do
   describe 'GET v1/blogs' do
     it 'GET index' do
       get v1_blogs_path
-      expect(response).to have_http_status(00)
+      expect(response).to have_http_status(200)
     end
     it 'POST create' do
       post v1_blogs_path, params: @params, as: :json

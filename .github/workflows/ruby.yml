@@ -17,5 +17,5 @@ jobs:
       with:
         ruby-version: 2.6.5
         # bundler-cache:true
-    - name: Hello World
-      run: echo Hello World
+    - name: rspec request test
+      run: bundle exec rake

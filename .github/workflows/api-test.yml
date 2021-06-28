@@ -11,8 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      db:
+      postgres:
         image: postgres:12.5
+        ports: ["5432:5432"]
         # options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         # env:
           # POSTGRES_HOST_AUTH_METHOD: 'trust'
@@ -20,7 +21,7 @@ jobs:
       image: ruby:2.6.5
       env:
         RAILS_ENV: test
-        DATABASE_HOST: db
+        DATABASE_URL: postgresql://postgres@localhost:5432/postgres?encoding=utf8&pool=5&timeout=5000
 
     steps:
     - uses: actions/checkout@v2

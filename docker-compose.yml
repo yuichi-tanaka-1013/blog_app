@@ -7,6 +7,9 @@ services:
       DATABASE_USER: postgres
       DATABASE_PASSWORD: password
     volumes:
+      - type: bind
+        source: ./backend
+        target: /backend
       - type: volume
         source: api-public-data
         target: /backend/public
@@ -44,7 +47,10 @@ services:
       - 8080:8080
     stdin_open: true
     tty: true
-    # volumes:
+    volumes:
+      - type: bind
+        source: ./frontend
+        target: /frontend
     #   - type: volume
     #     source: view-log-data
     #     target: /frontend/log

@@ -1,0 +1,38 @@
+name: Rspec_Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:12
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        env:
+          # POSTGRES_HOST_AUTH_METHOD: 'trust'
+    container:
+      image: ruby:2.6.5
+      env:
+        RAILS_ENV: test
+        DATABASE_HOST: postgres
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Bundler
+      run: gem install bundler --no-document -v $(grep "BUNDLED WITH" -1 Gemfile.lock | tail -n 1)
+      working-directory: ./backend
+    - name: Bundle install
+      run: bundle install --path=vendor/bundle --jobs 4 --retry 3
+      working-directory: ./backend
+    - name: DB setup
+      run: bundle exec rails db:setup
+      working-directory: ./backend
+    - name: Run rspec
+      run: bundle exec rspec
+      working-directory: ./backend

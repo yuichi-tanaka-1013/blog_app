@@ -1,0 +1,23 @@
+name: Exec RuboCop
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+# on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6.5
+        bundler-cache: true
+    - name: Run RuboCop
+      run: bundle exec rubocop
+      working-directory: ./backend

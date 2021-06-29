@@ -13,10 +13,8 @@ jobs:
     steps:
     - name: Check out repository
       uses: actions/checkout@v2
-      working-directory: ./backend
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
-      working-directory: ./backend
       with:
         ruby-version: 2.6.5
         bundler-cache: true

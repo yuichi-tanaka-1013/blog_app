@@ -35,7 +35,7 @@ services:
   web:
     build: nginx
     ports:
-      - 3000:80
+      - 3000:8080
     volumes:
       - ./nginx/log:/var/log/nginx
       - api-public-data:/backend/public
@@ -45,7 +45,7 @@ services:
   view:
     build: frontend
     ports:
-      - 8080:8080
+      - 80:8080
     stdin_open: true
     tty: true
     volumes:
